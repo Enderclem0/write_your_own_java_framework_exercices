@@ -8,22 +8,28 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public final class JSONWriter {
+  private final ClassValue<PropertyDescriptor[]> pdCache = new ClassValue<>() {
+      @Override
+      protected PropertyDescriptor[] computeValue(Class<?> type) {
+          try {
+              return Introspector.getBeanInfo(type).getPropertyDescriptors();
+          } catch (IntrospectionException e) {
+              throw new IllegalArgumentException("Unsupported class");
+          }
+      }
+  };
 
   private String propertyToJson(PropertyDescriptor pd, Object o) {
     return '"'+pd.getName()+ "\": "+toJSON(Utils.invokeMethod(o, pd.getReadMethod()));
   }
 
   private String instanceToJson(Object o){
-    try {
-      var bean = Introspector.getBeanInfo(o.getClass());
-      return Arrays.stream(bean.getPropertyDescriptors())
-              .filter(Objects::nonNull)
-              .filter(p -> !p.getName().equals("class"))
-              .map(p -> propertyToJson(p, o))
-              .collect(Collectors.joining(", ", "{", "}"));
-    } catch (IntrospectionException e) {
-      throw new IllegalArgumentException("Unsupported type");
-    }
+    var pds = pdCache.get(o.getClass());
+    return Arrays.stream(pds)
+            .filter(Objects::nonNull)
+            .filter(p -> !p.getName().equals("class"))
+            .map(p -> propertyToJson(p, o))
+            .collect(Collectors.joining(", ", "{", "}"));
   }
 
   public String toJSON(Object o){
