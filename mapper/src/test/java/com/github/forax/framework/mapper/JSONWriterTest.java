@@ -32,7 +32,6 @@ public class JSONWriterTest {
       );
     }
   }  // end of Q1
-/*
 
   public static class Car {
     private final String owner;
@@ -103,7 +102,7 @@ public class JSONWriterTest {
     }
 
   } // end of Q2
-
+/*
 
   public static final class Person {
     private final String firstName;
