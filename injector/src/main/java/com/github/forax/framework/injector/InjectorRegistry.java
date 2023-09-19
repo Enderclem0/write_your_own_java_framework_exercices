@@ -16,6 +16,14 @@ public final class InjectorRegistry {
         }
     }
 
+    public <T> void registerProvider(Class<T> type, Supplier<T> supplier) {
+        Objects.requireNonNull(type);
+        Objects.requireNonNull(supplier);
+        var present = registry.putIfAbsent(type, supplier);
+        if (present != null) {
+            throw new IllegalStateException("type " + type + " is already registered");
+        }
+    }
     public <T> T lookupInstance(Class<T> type) {
         Objects.requireNonNull(type);
         var present = registry.get(type);
