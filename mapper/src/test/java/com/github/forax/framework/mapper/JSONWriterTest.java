@@ -102,7 +102,6 @@ public class JSONWriterTest {
     }
 
   } // end of Q2
-/*
 
   public static final class Person {
     private final String firstName;
@@ -136,7 +135,7 @@ public class JSONWriterTest {
     }
   }
 
-
+/*
   @Nested
   public class Q5 {
     @Test @Tag("Q5")
@@ -174,6 +173,7 @@ public class JSONWriterTest {
     }
 
   } // end of Q5
+  */
 
   @Nested
   public class Q6 {
@@ -190,6 +190,7 @@ public class JSONWriterTest {
 
   } // end of Q6
 
+  /*
 
   public static class AddressInfo {
     private boolean international;

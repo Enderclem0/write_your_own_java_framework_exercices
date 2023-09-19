@@ -1,34 +1,45 @@
 package com.github.forax.framework.mapper;
 
-import java.beans.IntrospectionException;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 import java.util.Arrays;
-import java.util.Objects;
+import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.RECORD_COMPONENT;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 public final class JSONWriter {
-  private final ClassValue<PropertyDescriptor[]> pdCache = new ClassValue<>() {
+  @FunctionalInterface
+  private interface Generator {
+    String generate(JSONWriter writer, Object bean);
+  }
+
+  private static final ClassValue<List<Generator>> GEN_CACHE = new ClassValue<>() {
       @Override
-      protected PropertyDescriptor[] computeValue(Class<?> type) {
-          try {
-              return Introspector.getBeanInfo(type).getPropertyDescriptors();
-          } catch (IntrospectionException e) {
-              throw new IllegalArgumentException("Unsupported class");
-          }
+      protected List<Generator> computeValue(Class<?> type) {
+          return Arrays.stream(Utils.beanInfo(type).getPropertyDescriptors())
+                  .filter(propertyDescriptor -> !propertyDescriptor.getName().equals("class"))
+                  .<Generator>map(p -> {
+                      String key;
+                      var readMethod = p.getReadMethod();
+                      var annotation = readMethod.getAnnotation(JSONProperty.class);
+                      if (annotation != null) {
+                          key = "\"" + annotation.value() + "\": ";
+                      }
+                      else {
+                          key = "\"" + p.getName() + "\": ";
+                      }
+                      return (writer, o) -> key + writer.toJSON(Utils.invokeMethod(o, readMethod));
+                  })
+                  .toList();
       }
   };
 
-  private String propertyToJson(PropertyDescriptor pd, Object o) {
-    return '"'+pd.getName()+ "\": "+toJSON(Utils.invokeMethod(o, pd.getReadMethod()));
-  }
-
   private String instanceToJson(Object o){
-    var pds = pdCache.get(o.getClass());
-    return Arrays.stream(pds)
-            .filter(Objects::nonNull)
-            .filter(p -> !p.getName().equals("class"))
-            .map(p -> propertyToJson(p, o))
+    return GEN_CACHE.get(o.getClass()).stream()
+            .map(generator -> generator.generate(this, o))
             .collect(Collectors.joining(", ", "{", "}"));
   }
 
