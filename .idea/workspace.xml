@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="?">
+    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="Added user friendly class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -69,8 +68,8 @@
       <window_info id="Commit_Guest" />
       <window_info id="Pull Requests" weight="0.2685547" />
       <window_info id="Learn" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.50067025" visible="true" weight="0.2503255" />
-      <window_info id="Commit" order="1" weight="0.2503255" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.50067025" weight="0.2503255" />
+      <window_info active="true" id="Commit" order="1" visible="true" weight="0.2503255" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.2685547" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="TypeScript" />
@@ -78,12 +77,12 @@
       <window_info anchor="bottom" id="Build" weight="0.3302696" />
       <window_info anchor="bottom" id="TODO" />
       <window_info anchor="bottom" id="File Transfer" />
-      <window_info active="true" anchor="bottom" id="Run" visible="true" />
+      <window_info active="true" anchor="bottom" id="Run" visible="true" weight="0.33762255" />
       <window_info anchor="bottom" id="Problems View" order="0" weight="0.3302696" />
-      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.3302696" />
       <window_info anchor="bottom" id="Services" order="2" />
       <window_info anchor="bottom" id="Messages" order="3" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.3302696" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.33762255" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.49932975" weight="0.3302696" />
       <window_info anchor="right" id="Endpoints" />
       <window_info anchor="right" id="Meet New UI" side_tool="true" />
@@ -91,7 +90,7 @@
       <window_info anchor="right" id="Database" order="1" weight="0.32975262" />
       <window_info anchor="right" id="Gradle" order="2" weight="0.25" />
       <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.097981766" />
-      <window_info anchor="right" id="github.copilotToolWindow" order="4" />
+      <window_info anchor="right" id="github.copilotToolWindow" order="4" weight="0.097981766" />
     </layout>
   </component>
   <component name="RecentsManager">
@@ -133,6 +132,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="InjectorRegistryTest$Q6.exampleWithAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="injector" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.forax.framework.injector.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.github.forax.framework.injector.InjectorRegistryTest" />
+      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.injector.InjectorRegistryTest$Q6" />
+      <option name="METHOD_NAME" value="exampleWithAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JSONWriterTest$Q6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mapper" />
       <extension name="coverage">
@@ -163,21 +178,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ORMTest$Q12" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="orm" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.github.forax.framework.orm.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.github.forax.framework.orm.ORMTest" />
-      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.orm.ORMTest$Q12" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ORMTest$Q13" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="orm" />
       <extension name="coverage">
@@ -195,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InjectorRegistryTest$Q6.exampleWithAll" />
         <item itemvalue="JUnit.InjectorRegistryTest$Q2.registerInstanceAndGetInstancePreciseSignature" />
         <item itemvalue="JUnit.JSONWriterTest$Q6" />
         <item itemvalue="JUnit.JSONWriterTest" />
         <item itemvalue="JUnit.ORMTest$Q13" />
-        <item itemvalue="JUnit.ORMTest$Q12" />
       </list>
     </recent_temporary>
   </component>
@@ -221,7 +221,8 @@
       <updated>1694812014677</updated>
       <workItem from="1694812018449" duration="3693000" />
       <workItem from="1695107602987" duration="2642000" />
-      <workItem from="1695110301941" duration="982000" />
+      <workItem from="1695110301941" duration="3233000" />
+      <workItem from="1695113573801" duration="3036000" />
     </task>
     <task id="LOCAL-00002" summary="Added jsonWriting optimisation&#10;Added base injectorRegistry">
       <option name="closed" value="true" />
@@ -255,7 +256,39 @@
       <option name="project" value="LOCAL" />
       <updated>1695110654107</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added registerProviderClass">
+      <option name="closed" value="true" />
+      <created>1695111377446</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1695111377446</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added registerProviderClass">
+      <option name="closed" value="true" />
+      <created>1695111478305</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695111478305</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added constructor finder in registerProviderClass">
+      <option name="closed" value="true" />
+      <created>1695115768605</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1695115768606</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added user friendly class">
+      <option name="closed" value="true" />
+      <created>1695116015505</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1695116015505</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,9 +307,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update and fix typos" />
-    <MESSAGE value="add a section on dependency checking" />
-    <MESSAGE value="Utils.defaultConstructor and Utils.newInstance should propagate the type of the class" />
     <MESSAGE value="do not try to validate the dependency graph before calling lookup()" />
     <MESSAGE value="comment starts at the wrong place" />
     <MESSAGE value="rework interceptor code/questions" />
@@ -299,7 +329,10 @@
     <MESSAGE value="Added register provider" />
     <MESSAGE value="Added helpher method" />
     <MESSAGE value="?" />
-    <option name="LAST_COMMIT_MESSAGE" value="?" />
+    <MESSAGE value="Added registerProviderClass" />
+    <MESSAGE value="Added constructor finder in registerProviderClass" />
+    <MESSAGE value="Added user friendly class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added user friendly class" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
