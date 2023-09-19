@@ -44,10 +44,11 @@ public final class InjectorRegistry {
                             .filter(c -> c.isAnnotationPresent(Inject.class))
                             .toList();
         var size = constructors.size();
-        if (size > 1) {
-            throw new IllegalStateException("More than one injected constructor found");
-        }
-        return size == 1 ? Optional.of(constructors.get(0)) : Optional.empty();
+        return switch (size) {
+            case 1 -> Optional.of(constructors.get(0));
+            case 0 -> Optional.empty();
+            default -> throw new IllegalStateException("More than one injected constructor found");
+        };
     }
     
     public <T> void registerProviderClass(Class<T> type, Class<? extends T> cls) {
@@ -78,5 +79,9 @@ public final class InjectorRegistry {
                     return writeMethod != null && p.getWriteMethod().isAnnotationPresent(Inject.class);
                 })
                 .toList();
+    }
+
+    public <T> void registerProviderClass(Class<T> cls) {
+        registerProviderClass(cls,cls);
     }
 }
