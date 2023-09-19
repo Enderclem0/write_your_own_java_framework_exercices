@@ -1,7 +1,7 @@
 package com.github.forax.framework.injector;
 
-import java.util.HashMap;
-import java.util.Objects;
+import java.beans.PropertyDescriptor;
+import java.util.*;
 import java.util.function.Supplier;
 
 public final class InjectorRegistry {
@@ -31,5 +31,13 @@ public final class InjectorRegistry {
             throw new IllegalStateException("type " + type + " is not registered");
         }
         return type.cast(present.get());
+    }
+
+    public static List<PropertyDescriptor> findInjectableProperties(Class<?> type) {
+        Objects.requireNonNull(type);
+        return Arrays.stream(Utils.beanInfo(type).getPropertyDescriptors())
+                .filter(propertyDescriptor -> !propertyDescriptor.getName().equals("class"))
+                .filter(p -> p.getWriteMethod().isAnnotationPresent(Inject.class))
+                .toList();
     }
 }
