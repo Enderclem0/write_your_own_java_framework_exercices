@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="Added register provider">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/main/java/com/github/forax/framework/injector/InjectorRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/injector/src/test/java/com/github/forax/framework/injector/InjectorRegistryTest.java" afterDir="false" />
@@ -71,8 +69,8 @@
       <window_info id="Commit_Guest" />
       <window_info id="Pull Requests" weight="0.2685547" />
       <window_info id="Learn" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.50067025" weight="0.2503255" />
-      <window_info active="true" id="Commit" order="1" visible="true" weight="0.2503255" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.50067025" visible="true" weight="0.2503255" />
+      <window_info id="Commit" order="1" weight="0.2503255" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.2685547" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="TypeScript" />
@@ -223,7 +221,7 @@
       <updated>1694812014677</updated>
       <workItem from="1694812018449" duration="3693000" />
       <workItem from="1695107602987" duration="2642000" />
-      <workItem from="1695110301941" duration="209000" />
+      <workItem from="1695110301941" duration="982000" />
     </task>
     <task id="LOCAL-00002" summary="Added jsonWriting optimisation&#10;Added base injectorRegistry">
       <option name="closed" value="true" />
@@ -241,7 +239,23 @@
       <option name="project" value="LOCAL" />
       <updated>1695109851057</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added helpher method">
+      <option name="closed" value="true" />
+      <created>1695110638160</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695110638160</updated>
+    </task>
+    <task id="LOCAL-00005" summary="?">
+      <option name="closed" value="true" />
+      <created>1695110654107</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1695110654107</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,8 +274,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix typos in README.md" />
-    <MESSAGE value="use List instead of Stream" />
     <MESSAGE value="update and fix typos" />
     <MESSAGE value="add a section on dependency checking" />
     <MESSAGE value="Utils.defaultConstructor and Utils.newInstance should propagate the type of the class" />
@@ -285,7 +297,9 @@
     <MESSAGE value="Added caching of property descriptors" />
     <MESSAGE value="Added jsonWriting optimisation&#10;Added base injectorRegistry" />
     <MESSAGE value="Added register provider" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added register provider" />
+    <MESSAGE value="Added helpher method" />
+    <MESSAGE value="?" />
+    <option name="LAST_COMMIT_MESSAGE" value="?" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

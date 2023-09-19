@@ -24,6 +24,24 @@ public final class InjectorRegistry {
             throw new IllegalStateException("type " + type + " is already registered");
         }
     }
+
+    public <T> void registerProviderClass(Class<T> type, Class<?> cls) {
+        Objects.requireNonNull(type);
+        Objects.requireNonNull(cls);
+        var present = registry.putIfAbsent(type, () -> {
+            var constructor = Utils.defaultConstructor(cls);
+            var instance = Utils.newInstance(constructor);
+            var props = findInjectableProperties(type);
+            for (var prop: props) {
+                Utils.invokeMethod(instance, prop.getWriteMethod(), lookupInstance(prop.getPropertyType()));
+            }
+            return type.cast(instance);
+        });
+        if (present != null) {
+            throw new IllegalStateException("type " + type + " is already registered");
+        }
+    }
+
     public <T> T lookupInstance(Class<T> type) {
         Objects.requireNonNull(type);
         var present = registry.get(type);
