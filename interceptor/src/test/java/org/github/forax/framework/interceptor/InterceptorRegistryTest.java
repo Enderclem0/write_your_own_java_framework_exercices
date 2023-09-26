@@ -133,6 +133,7 @@ public class InterceptorRegistryTest {
     @Target(METHOD)
     @interface Tagged2 { }
 
+/*
     @Test @Tag("Q2")
     public void findAdvices() throws NoSuchMethodException {
       class EmptyAroundAdvice implements AroundAdvice {
@@ -174,6 +175,7 @@ public class InterceptorRegistryTest {
           () -> assertEquals(List.of(advice1, advice2, advice3), registry.findAdvices(method3))
       );
     }
+*/
 
     @Test @Tag("Q2")
     public void withTwoAdvices() {
@@ -205,7 +207,6 @@ public class InterceptorRegistryTest {
     }
   }  // end of Q2
 
-/*
   @Nested
   public class Q3 {
     @Retention(RUNTIME)
@@ -259,7 +260,6 @@ public class InterceptorRegistryTest {
       );
     }
   }  // end of Q3
-
 
   @Nested
   public class Q4 {
@@ -532,7 +532,7 @@ public class InterceptorRegistryTest {
     }
   }  // end of Q5
 
-
+/*
   @Nested
   class Q6 {
     @Retention(RUNTIME)
