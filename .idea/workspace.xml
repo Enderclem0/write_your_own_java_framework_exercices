@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="Added tests">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="Added annotations for parameters and class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interceptor/src/test/java/org/github/forax/framework/interceptor/InterceptorRegistryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/interceptor/src/test/java/org/github/forax/framework/interceptor/InterceptorRegistryTest.java" afterDir="false" />
@@ -45,24 +44,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "master",
-    "ignore.preview.features.used": "true",
-    "last_opened_file_path": "/Users/forax/git/write_your_own_java_framework_exercices/orm/src/main/java/com/github/forax/framework/orm",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/forax/git/write_your_own_java_framework_exercices/orm/src/main/java/com/github/forax/framework/orm&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
     <layout>
       <window_info id="Space Code Reviews" />
@@ -71,8 +71,8 @@
       <window_info id="Commit_Guest" />
       <window_info id="Pull Requests" weight="0.2685547" />
       <window_info id="Learn" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.50067025" visible="true" weight="0.2503255" />
-      <window_info id="Commit" order="1" weight="0.2503255" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.50067025" weight="0.2503255" />
+      <window_info active="true" id="Commit" order="1" visible="true" weight="0.2503255" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.2685547" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="TypeScript" />
@@ -80,11 +80,11 @@
       <window_info anchor="bottom" id="Build" weight="0.3302696" />
       <window_info anchor="bottom" id="TODO" />
       <window_info anchor="bottom" id="File Transfer" />
-      <window_info active="true" anchor="bottom" id="Run" visible="true" weight="0.3302696" />
+      <window_info anchor="bottom" id="Run" weight="0.3302696" />
       <window_info anchor="bottom" id="Problems View" order="0" weight="0.3302696" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.3302696" />
       <window_info anchor="bottom" id="Services" order="2" />
-      <window_info anchor="bottom" id="Messages" order="3" />
+      <window_info active="true" anchor="bottom" id="Messages" order="3" visible="true" weight="0.3302696" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.33762255" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.49932975" weight="0.3302696" />
       <window_info anchor="right" id="Endpoints" />
@@ -92,8 +92,8 @@
       <window_info anchor="right" content_ui="combo" id="Notifications" order="0" weight="0.25" />
       <window_info anchor="right" id="Database" order="1" weight="0.32975262" />
       <window_info anchor="right" id="Gradle" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.097981766" />
-      <window_info anchor="right" id="github.copilotToolWindow" order="4" weight="0.29459637" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32975262" />
+      <window_info anchor="right" id="github.copilotToolWindow" order="4" weight="0.32975262" />
     </layout>
   </component>
   <component name="RecentsManager">
@@ -118,22 +118,7 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="InterceptorRegistryTest$Q2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="interceptor" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.github.forax.framework.interceptor.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest" />
-      <option name="MAIN_CLASS_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest$Q2" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.InterceptorRegistryTest">
     <configuration name="InterceptorRegistryTest$Q3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="interceptor" />
       <extension name="coverage">
@@ -149,22 +134,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InterceptorRegistryTest$Q3.findInterceptor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="interceptor" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.github.forax.framework.interceptor.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest" />
-      <option name="MAIN_CLASS_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest$Q3" />
-      <option name="METHOD_NAME" value="findInterceptor" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="InterceptorRegistryTest$Q4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="interceptor" />
       <extension name="coverage">
@@ -176,6 +145,37 @@
       <option name="PACKAGE_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest" />
       <option name="MAIN_CLASS_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest$Q4" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InterceptorRegistryTest$Q7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="interceptor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.github.forax.framework.interceptor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest" />
+      <option name="MAIN_CLASS_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest$Q7" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InterceptorRegistryTest$Q7.annotationOnClassMethodAndParameters" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="interceptor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.github.forax.framework.interceptor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest" />
+      <option name="MAIN_CLASS_NAME" value="org.github.forax.framework.interceptor.InterceptorRegistryTest$Q7" />
+      <option name="METHOD_NAME" value="annotationOnClassMethodAndParameters" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -198,10 +198,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.InterceptorRegistryTest" />
+        <item itemvalue="JUnit.InterceptorRegistryTest$Q7.annotationOnClassMethodAndParameters" />
+        <item itemvalue="JUnit.InterceptorRegistryTest$Q7" />
         <item itemvalue="JUnit.InterceptorRegistryTest$Q4" />
         <item itemvalue="JUnit.InterceptorRegistryTest$Q3" />
-        <item itemvalue="JUnit.InterceptorRegistryTest$Q3.findInterceptor" />
-        <item itemvalue="JUnit.InterceptorRegistryTest$Q2" />
       </list>
     </recent_temporary>
   </component>
@@ -227,6 +227,7 @@
       <workItem from="1695113573801" duration="3320000" />
       <workItem from="1695711866026" duration="4001000" />
       <workItem from="1695715954113" duration="1384000" />
+      <workItem from="1695720339802" duration="1811000" />
     </task>
     <task id="LOCAL-00002" summary="Added jsonWriting optimisation&#10;Added base injectorRegistry">
       <option name="closed" value="true" />
@@ -300,7 +301,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695116801760</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Transitioned to interceptors">
+      <option name="closed" value="true" />
+      <created>1695719912182</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1695719912182</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,8 +328,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="comment starts at the wrong place" />
-    <MESSAGE value="rework interceptor code/questions" />
     <MESSAGE value="use throw switch in the tests" />
     <MESSAGE value="remove weird import that make the CI fails" />
     <MESSAGE value="update injector and rewrite annotation scanner" />
@@ -344,7 +351,9 @@
     <MESSAGE value="Added constructor finder in registerProviderClass" />
     <MESSAGE value="Added user friendly class" />
     <MESSAGE value="Added tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tests" />
+    <MESSAGE value="Transitioned to interceptors" />
+    <MESSAGE value="Added annotations for parameters and class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added annotations for parameters and class" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
