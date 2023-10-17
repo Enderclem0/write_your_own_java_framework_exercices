@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class ORM {
+
+  private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
+
   private ORM() {
     throw new AssertionError();
   }
@@ -222,7 +225,7 @@ public final class ORM {
   }
 
   static List<?> findAll(Connection connection, String query, BeanInfo beanInfo, Constructor<?> constructor) throws SQLException {
-    return findAll(connection, query, beanInfo, constructor, new Object[0]);
+    return findAll(connection, query, beanInfo, constructor, EMPTY_OBJECT_ARRAY);
   }
 
   static List<?> findAll(Connection connection, String query, BeanInfo beanInfo, Constructor<?> constructor, Object[] args) throws SQLException {
@@ -264,7 +267,7 @@ public final class ORM {
         if (method.isAnnotationPresent(Query.class)) {
           var query = method.getAnnotation(Query.class).value();
           var constructor = Utils.defaultConstructor(beanType);
-          var argsToPass = args == null ? new Object[0] : args;
+          var argsToPass = args == null ? EMPTY_OBJECT_ARRAY : args;
           var call = findAll(currentConnection(), query, beanInfo, constructor, argsToPass);
           if (method.getReturnType() == List.class) {
             return call;
