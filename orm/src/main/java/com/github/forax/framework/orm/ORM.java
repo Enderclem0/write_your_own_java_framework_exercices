@@ -1,8 +1,11 @@
 package com.github.forax.framework.orm;
 
 import javax.sql.DataSource;
+import java.beans.BeanInfo;
+import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.io.Serial;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Proxy;
@@ -17,6 +20,13 @@ public final class ORM {
   }
 
   private static final ThreadLocal<Connection> currentConnection = new ThreadLocal<>();
+
+  static PropertyDescriptor findProperty(BeanInfo beanInfo, String id) {
+      return Arrays.stream(beanInfo.getPropertyDescriptors())
+        .filter(prop -> prop.getName().equals(Introspector.decapitalize(id)))
+        .findFirst()
+        .orElseThrow(() -> new IllegalStateException("No property found"));
+  }
 
   @FunctionalInterface
   public interface TransactionBlock {
@@ -81,7 +91,12 @@ public final class ORM {
       connection.setAutoCommit(false);
       currentConnection.set(connection);
       try {
-        block.run();
+        try{
+          block.run();
+        }
+        catch (UncheckedSQLException e) {
+          throw e.getCause();
+        }
         connection.commit();
       } catch (SQLException e) {
         try {
@@ -147,26 +162,79 @@ public final class ORM {
     }
   }
 
-  private static List<?> findAll(Class<?> beanType) throws SQLException {
+  static Object toEntityClass(ResultSet resultSet, BeanInfo beanInfo, Constructor<?> constructor) throws SQLException {
+    Object instance = Utils.newInstance(constructor);
+    var props = beanInfo.getPropertyDescriptors();
+    var index = 1;
+    for (PropertyDescriptor prop : props) {
+      if (prop.getName().equals("class")) {
+        continue;
+      }
+      var value = resultSet.getObject(index++);
+      var setter = prop.getWriteMethod();
+      Utils.invokeMethod(instance, setter, value);
+    }
+    return instance;
+  }
+
+  static List<?> findAll(Class<?> beanType) throws SQLException {
     Connection connection = currentConnection();
     String sqlQuery = "SELECT * FROM " + findTableName(beanType);
     var beanInfo = Utils.beanInfo(beanType);
-    var props = beanInfo.getPropertyDescriptors();
-    var list = new ArrayList<>();
     var defaultConstructor = Utils.defaultConstructor(beanType);
-    try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+    return findAll(connection, sqlQuery, beanInfo, defaultConstructor);
+  }
+
+  static String createSaveQuery(String tableName, BeanInfo beanInfo) {
+    var props = beanInfo.getPropertyDescriptors();
+    var columns = Arrays.stream(props)
+            .filter(prop -> !findColumnName(prop).equals("CLASS"))
+            .map(ORM::findColumnName)
+            .collect(Collectors.joining(", "));
+    var values = Arrays.stream(props)
+            .filter(prop -> !findColumnName(prop).equals("CLASS"))
+            .map(e -> "?")
+            .collect(Collectors.joining(", "));
+    return "MERGE INTO " + tableName + " (" + columns + ") VALUES (" + values + ");";
+  }
+
+  static Object save(Connection connection, String tableName, BeanInfo beanInfo, Object bean, PropertyDescriptor idProperty) throws SQLException {
+    try(PreparedStatement statement = connection.prepareStatement(createSaveQuery(tableName,beanInfo), Statement.RETURN_GENERATED_KEYS)){
+      var index = 1;
+      for (PropertyDescriptor prop : beanInfo.getPropertyDescriptors()) {
+        if (prop.getName().equals("class")) {
+          continue;
+        }
+        var value = Utils.invokeMethod(bean, prop.getReadMethod());
+        statement.setObject(index++, value);
+      }
+      statement.executeUpdate();
+      if (idProperty != null) {
+        try (ResultSet resultSet = statement.getGeneratedKeys()) {
+          if (resultSet.next()) {
+            var id = resultSet.getObject(1);
+            Utils.invokeMethod(bean, idProperty.getWriteMethod(), id);
+          }
+        }
+      }
+    }
+    return bean;
+  }
+
+  static List<?> findAll(Connection connection, String query, BeanInfo beanInfo, Constructor<?> constructor) throws SQLException {
+    return findAll(connection, query, beanInfo, constructor, new Object[0]);
+  }
+
+  static List<?> findAll(Connection connection, String query, BeanInfo beanInfo, Constructor<?> constructor, Object[] args) throws SQLException {
+    var list = new ArrayList<>();
+    try (PreparedStatement statement = connection.prepareStatement(query)) {
+      var index = 1;
+      for (Object arg : args) {
+        statement.setObject(index++, arg);
+      }
       try(ResultSet resultSet = statement.executeQuery()) {
         while (resultSet.next()) {
-          var instance = Utils.newInstance(defaultConstructor);
-          var index = 1;
-          for (PropertyDescriptor prop : props) {
-            if (prop.getName().equals("class")) {
-              continue;
-            }
-            var value = resultSet.getObject(index++);
-            var setter = prop.getWriteMethod();
-            Utils.invokeMethod(instance, setter, value);
-          }
+          var instance = toEntityClass(resultSet, beanInfo, constructor);
           list.add(instance);
         }
       }
@@ -174,15 +242,57 @@ public final class ORM {
     return list;
   }
 
+  static PropertyDescriptor findId(BeanInfo beanInfo) {
+    var propertiesId = Arrays.stream(beanInfo.getPropertyDescriptors())
+            .filter(prop -> prop.getReadMethod().getAnnotation(Id.class) != null)
+            .toList();
+    return switch (propertiesId.size()) {
+      case 0 -> null;
+      case 1 -> propertiesId.get(0);
+      default -> throw new IllegalStateException("Unexpected value: " + propertiesId.size());
+    };
+  }
+
   public static<T extends Repository<?,?>> T createRepository(Class<T> repositoryType) {
     Objects.requireNonNull(repositoryType);
     var beanType = findBeanTypeFromRepository(repositoryType);
+    var tableName = findTableName(beanType);
+    var beanInfo = Utils.beanInfo(beanType);
     return repositoryType.cast(Proxy.newProxyInstance(repositoryType.getClassLoader(), new Class<?>[]{repositoryType},
             (Object proxy, Method method, Object[] args) -> {
       try {
+        if (method.isAnnotationPresent(Query.class)) {
+          var query = method.getAnnotation(Query.class).value();
+          var constructor = Utils.defaultConstructor(beanType);
+          var argsToPass = args == null ? new Object[0] : args;
+          var call = findAll(currentConnection(), query, beanInfo, constructor, argsToPass);
+          if (method.getReturnType() == List.class) {
+            return call;
+          }
+          return call.stream().findFirst();
+        }
+        var name = method.getName();
+        if (name.startsWith("findBy") && !name.equals("findById")) {
+          var property = findProperty(beanInfo, name.substring(6));
+          var query = "SELECT * FROM " + tableName + " WHERE " + property.getName() + " = ?";
+          var constructor = Utils.defaultConstructor(beanType);
+          return findAll(currentConnection(), query, beanInfo, constructor, new Object[]{args[0]}).stream().findFirst();
+        }
         return switch (method.getName()) {
           case "findAll" -> findAll(beanType);
           case "equals", "hashCode", "toString" -> throw new UnsupportedOperationException("");
+          case "findById" -> {
+            var id = args[0];
+            var idProperty = findId(beanInfo);
+            var query = "SELECT * FROM " + tableName + " WHERE " + findColumnName(idProperty) + " = ?";
+            var constructor = Utils.defaultConstructor(beanType);
+            yield findAll(currentConnection(), query, beanInfo, constructor, new Object[]{id}).stream().findFirst();
+          }
+          case "save" -> {
+            var bean = args[0];
+            var idProperty = findId(beanInfo);
+            yield save(currentConnection(), tableName, beanInfo, bean, idProperty);
+          }
           default -> throw new IllegalStateException("Unexpected value: " + method.getName());
         };
       }

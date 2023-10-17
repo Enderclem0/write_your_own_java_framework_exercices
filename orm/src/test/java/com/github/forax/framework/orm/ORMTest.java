@@ -650,7 +650,7 @@ public class ORMTest {
       assertThrows(NullPointerException.class, () -> ORM.createRepository(null));
     }
   }
-/*
+
   @Nested
   public class Q7 {
 
@@ -762,7 +762,6 @@ public class ORMTest {
     }
   }
 
-/*
   @Nested
   class Q8 {
 
@@ -770,7 +769,7 @@ public class ORMTest {
     public void testCreateSaveQuery() {
       var beanInfo = Utils.beanInfo(Person.class);
       var sqlQuery = ORM.createSaveQuery("PERSON", beanInfo);
-      assertTrue(sqlQuery.endsWith("INTO PERSON (id, name) VALUES (?, ?);"));
+      assertTrue(sqlQuery.endsWith("INTO PERSON (ID, NAME) VALUES (?, ?);"));
     }
 
     @Test @Tag("Q8")
@@ -829,7 +828,6 @@ public class ORMTest {
     }
 
   }
-
 
   @SuppressWarnings("unused")
   public static class Data {
@@ -1046,7 +1044,6 @@ public class ORMTest {
     }
   }
 
-
   @Nested
   public class Q12 {
 
@@ -1118,7 +1115,6 @@ public class ORMTest {
     }
 
   }
-
 
   @Nested
   class Q13 {
@@ -1260,5 +1256,4 @@ public class ORMTest {
     }
 
   }
-  */
 }
